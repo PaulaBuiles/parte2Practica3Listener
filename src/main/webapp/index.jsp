@@ -1,4 +1,4 @@
-<%@ page import="java.util.HashMap" %>
+
 <%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: Paula
@@ -6,7 +6,7 @@
   Time: 11:28 a. m.
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 <!DOCTYPE html>
@@ -70,7 +70,7 @@
 
 
 <div class="form-container">
-  <h2>Registration Form</h2>
+  <h1>Registration Form</h1>
   <form  method="post" action="${pageContext.request.contextPath}/register-client" method="POST" class="needs-validation" >
     <%
       Map<String,String> errores = (Map<String, String>) request.getSession().getAttribute("errores");
@@ -114,6 +114,15 @@
       <div class="alert alert-danger">Debe ser igual a la contraseña</div>
       <%}%>
     </div>
+    <div class="col-12">
+      <label  class="form-label">Email</label>
+      <input name="email" type="email" class="form-control" id="email" placeholder="email">
+      <%
+        if(errores != null && errores.containsKey("email")) {
+      %>
+      <div class="alert alert-danger">Debe ingresar un email valido</div>
+      <%}%>
+    </div>
       <div class="col-12">
         <label for="address" class="form-label">Dirección</label>
         <input name="address" type="text" class="form-control" id="address" placeholder="ej: km 10. via tebaida-armenia" >
@@ -123,62 +132,23 @@
         <div class="alert alert-danger">Dirección válida requerida</div>
         <%}%>
       </div>
-     <%-- <div class="col-12">
-        <label for="email" class="form-label">Email</label>
-        <input name="phone" type="text" class="form-control" id="email" placeholder="user@p.com">
-        <%
-          if(errores != null && errores.containsKey("email")) {
-        %>
-        <div class="alert alert-danger">Email valido requerido, debe contener un '@'</div>
-        <%}%>
-      </div>--%>
-   <%-- <% HashMap<String,String> errores=(HashMap<String, String>) request.getSession().getAttribute("errores");%>
-    <div >
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    </div>
-    <%
-      if (errores != null && errores.containsKey("name")){
-        errores.get("name");
-    %>
-    <div class="alert alert-danger" role="alert">Se requiere un nombre</div>
-      <%} %>
-    <div class="alert alert-danger" role="alert">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" value="${param.username}" required>
-      <%
-        if(errores != null && errores.containsKey("userName")) {
-      %>
-      <div class="alert alert-danger">Nombre de usuario valido requerido</div>
-      <%}%>
-    </div>
 
-    <div class="alert alert-danger" role="alert">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="${param.email}" required>
-    </div>
-    <div class="alert alert-danger" role="alert">
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" value="${param.password}" required>
-    </div>
-    <div class="alert alert-danger" role="alert">
-    <label for="confirm_password">Confirm Password:</label>
-    <input type="password" id="confirm_password" name="confirm_password" value="${param.confirm_password}" required>
-    </div>
-    <div class="alert alert-danger" role="alert">
-    <label for="address">Address:</label>
-    <input type="text" id="address" name="address" value="${param.address}" required>
-    </div>--%>
     <div class="clearfix">
       <button type="submit">Register</button>
     </div>
   </form>
-  <h1>Clients list</h1>
+  <h2>Clients list</h2>
   <p>Lista completa de todos los usuarios registrados </p>
-  <form action="/register-client" method="get">
+  <form action="${pageContext.request.contextPath}/register-client" method="get">
     <div class="clearfix">
       <button value="list" type="submit">Ver lista</button>
     </div>
+  </form>
+  <form action="${pageContext.request.contextPath}/editar.jsp">
+    <h2>Editar Base de Datos</h2>
+    <div class="clearfix">
+    <button value="list" type="submit">Ir a editar</button></div>
+    <%--<input type="submit" value="Ir a editar">--%>
   </form>
 </div>
 

@@ -1,17 +1,12 @@
 package cue.clothingjakarta.clothingjakarta.servlets;
 
-import cue.clothingjakarta.clothingjakarta.model.Clothing;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import javax.swing.text.Document;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "ClothingServlet", urlPatterns = "/clothing-send")
 public class ClothingServlet extends HttpServlet {

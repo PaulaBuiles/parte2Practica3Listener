@@ -10,6 +10,7 @@ public class Clothing {
         this.price = price;
     }
 
+
     public String getName() {
         return name;
     }

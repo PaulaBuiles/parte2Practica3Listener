@@ -23,8 +23,10 @@
 <p><b>User: <%=cont%></b></p>
 <p>Nombre: <%=client.getName()%></p>
 <p>Usuario: <%=client.getUsername()%></p>
+<p>Password: <%=client.getPassword()%></p>
+<p>ConfirmPassword: <%=client.getConfirm_password()%></p>
 <p>Email: <%=client.getEmail()%></p>
-<p>Direccion: <%=client.getAdress()%></p>
+<p>Direccion: <%=client.getAddress()%></p>
 <p>------------------------</p>
 <%cont=cont+1;%>
 

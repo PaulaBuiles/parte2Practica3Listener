@@ -1,6 +1,7 @@
 package cue.clothingjakarta.clothingjakarta.model;
 
 public class Client{
+    private Integer id;
     private String name;
     private String username;
     private String password;
@@ -9,7 +10,8 @@ public class Client{
     private String address;
 
 
-    public Client( String name,String username, String password,String confirm_password, String email, String address ) {
+    public Client( Integer id, String name,String username, String password,String confirm_password, String email, String address ) {
+        this.id =id;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -18,20 +20,12 @@ public class Client{
         this.address = address;
     }
 
-    public String getConfirm_password() {
-        return confirm_password;
+    public Integer getId() {
+        return id;
     }
 
-    public void setConfirm_password(String confirm_password) {
-        this.confirm_password = confirm_password;
-    }
-
-    public String getAdress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -58,6 +52,14 @@ public class Client{
         this.password = password;
     }
 
+    public String getConfirm_password() {
+        return confirm_password;
+    }
+
+    public void setConfirm_password(String confirm_password) {
+        this.confirm_password = confirm_password;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -66,4 +68,11 @@ public class Client{
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

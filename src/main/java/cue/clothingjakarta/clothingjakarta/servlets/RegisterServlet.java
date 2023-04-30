@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 @WebServlet(name = "RegisterServlet", urlPatterns = "/register-client")
@@ -36,36 +35,21 @@ public class RegisterServlet extends HttpServlet  {
         //list boton
         //lista base de datos
 
-        String driver = "com.mysql.cj.jdbc.Driver";
+       /* String driver = "com.mysql.cj.jdbc.Driver";
         String url ="jdbc:mysql://localhost:3306/clientes-register";
-        String username = "admin";
-        String password = "12345";
-        HttpSession session = request.getSession();
+        String username = "root";
+        String password = "0703";*/
+        HttpSession session =request.getSession();
         try {
-            Class.forName(driver);
-            Connection connection = DriverManager.getConnection(url,username,password);
-            connection.setAutoCommit(false);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM clientes ");
-            while (resultSet.next()){
-                System.out.println(resultSet.getString("Name"));
-                dBClients.add(new Client(resultSet.getString("Name"),
-                        resultSet.getString("Username"),
-                        resultSet.getString("Email"),
-                        resultSet.getString("Address"),
-                        resultSet.getString("password"),
-                        "xx"));
-            }
-            connection.commit();
-            statement.close();
-            session.setAttribute("dBClients",dBClients);
-            response.sendRedirect("listClient.jsp");
-
+            mfs.service.getRepository().loadList();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        session.setAttribute("dBClients",mfs.getService().getRepository().getProductoList());
+        response.sendRedirect("listClient.jsp");
+
 
         //Lista anterior a mano
        /* HttpSession session = request.getSession();
@@ -88,8 +72,21 @@ public class RegisterServlet extends HttpServlet  {
         String email = req.getParameter("email");
         String address = req.getParameter("address");
 
+        try {
+            mfs.service.getRepository().guardar(new Client(null,name,username,password,confirm_password,email,address));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-        mfs.getService().getClientService().messageRegister(name,username,password,confirm_password,email,address);
+        try {
+            mfs.getService().getClientService().messageRegister(name,username,password,confirm_password,email,address);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         if (mfs.getService().getClientService().getErrores().isEmpty()){
 
             resp.sendRedirect("/products.jsp");
